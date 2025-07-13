@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    container_name: rilix-backend
+    ports:
+      - "4000:4000"
+    environment:
+      DATABASE_URL: postgres://rilix:rilix@db:5432/rilixdb
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  db:
+    image: postgres:15
+    container_name: rilix-db
+    restart: always
+    environment:
+      POSTGRES_USER: rilix
+      POSTGRES_PASSWORD: rilix
+      POSTGRES_DB: rilixdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: rilix-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@rilix.com
+      PGADMIN_DEFAULT_PASSWORD: rilix123
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
