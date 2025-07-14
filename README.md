@@ -1,57 +1,51 @@
-Rilix Dashboard – Backend
-API RESTful desenvolvida em Node.js + Express, com banco de dados PostgreSQL, para gerenciar notícias no painel administrativo da Rilix. Suporta operações CRUD com upload de imagens, validações robustas com Zod, e integração via Docker para fácil deploy.
+# 📰 Rilix Dashboard – Backend
 
-⚙️ Tecnologias utilizadas
-🟢 Node.js + Express
+API RESTful desenvolvida em **Node.js + Express** com banco de dados **PostgreSQL**, focada na gestão de **notícias** para o painel administrativo da Rilix. Suporta **CRUD com upload de imagens**, **validações robustas com Zod**, e **deploy facilitado com Docker**.
 
-🧪 Zod para validação de dados
+---
 
-🗂️ Prisma ORM com PostgreSQL
+## ⚙️ Tecnologias utilizadas
 
-🖼️ Upload de imagens com multer
+- 🟢 **Node.js + Express** – API e roteamento
+- 🧪 **Zod** – Validação de dados
+- 🗂️ **Prisma ORM** – Mapeamento objeto-relacional
+- 🐘 **PostgreSQL** – Banco de dados relacional
+- 🖼️ **Multer** – Upload de imagens
+- 🌱 **dotenv** – Variáveis de ambiente
+- 🐳 **Docker + Docker Compose** – Ambiente isolado e replicável
+- 🧹 **ESLint + Prettier** – Padronização e linting
 
-🌱 dotenv para variáveis de ambiente
+---
 
-🐳 Docker + Docker Compose para ambiente isolado
+## 📦 Como rodar localmente
 
-👨‍💻 ESLint + Prettier para padronização
+### 1. Instale as dependências
 
-
-Rodar o projeto ->
 npm install
 
-Configure o .env
+### 2. Configure o .env
+
 DATABASE_URL=postgresql://rilis_dahboard_user:otTJV4LRLGZhSIUAhTMX5eEG5MBxCsiT@dpg-d1q4j4c9c44c7397h2hg-a.oregon-postgres.render.com/rilis_dahboard
 PORT=4000
 
-Rode as migrations
+### 2. Rode as migrações
+
 npx prisma migrate dev
 
-Inicie o servidor
+### 2. Inicie o servidor
+
 npm run dev
 
+## 🐳 Rodando com Docker
 
-Rodar com docker
 docker-compose up --build
 
-2. Serviços disponíveis
-Serviço	Porta	URL
-Backend	4000	http://localhost:4000
-PostgreSQL	5432	localhost:5432
-pgAdmin	8080	http://localhost:8080
+### Serviços disponíveis
 
-Credenciais do pgAdmin:
-
-Email: admin@rilix.com
-
-Senha: rilix123
-
-
-🧪 Endpoints principais
-Método	Rota	Descrição
-GET	/news	Lista todas as notícias
-POST	/news	Cria uma nova notícia
-PUT	/news/:id	Atualiza uma notícia
-DELETE	/news/:id	Remove uma notícia
-GET	/uploads/:img	Serve imagens da notícia
-
+```text
+| Serviço    | Porta | URL                                            |
+| ---------- | ----- | ---------------------------------------------- |
+| Backend    | 4000  | [http://localhost:4000](http://localhost:4000) |
+| PostgreSQL | 5432  | localhost:5432                                 |
+| pgAdmin    | 8080  | [http://localhost:8080](http://localhost:8080) |
+```
