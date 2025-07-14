@@ -2,14 +2,21 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Copia apenas o package.json e lock para instalar dependências primeiro
 COPY package.json package-lock.json ./
 RUN npm install
 
-RUN npx prisma generate
-
-
+# ⚠️ Copie o restante dos arquivos, incluindo a pasta prisma/ ANTES de rodar generate
 COPY . .
 
-EXPOSE 4000
+# ✅ Gere o client Prisma (agora a pasta prisma existe no container)
+RUN npx prisma generate
 
-CMD ["npm", "run", "dev"]
+# (Opcional: aplique as migrações no banco de produção)
+# RUN npx prisma migrate deploy
+
+# Compile o código, se for necessário
+RUN npm run build
+
+EXPOSE 3000
+CMD ["npm", "start"]
