@@ -7,7 +7,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      DATABASE_URL: postgres://rilix:rilix@db:5432/rilixdb
+      DATABASE_URL: postgresql://rilis_dahboard_user:otTJV4LRLGZhSIUAhTMX5eEG5MBxCsiT@dpg-d1q4j4c9c44c7397h2hg-a/rilis_dahboard
     depends_on:
       - db
     volumes:
